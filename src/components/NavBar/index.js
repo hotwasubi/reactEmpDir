@@ -1,7 +1,7 @@
 import React from "react";
 import "./style.css";
 
-function navBar(props) {
+function NavBar(props) {
     return (
         <div className="navbar text-center container-fluid">
             <div className="navbar-brand h1 mb-0 text-center title">Employee Directory</div>
@@ -10,4 +10,4 @@ function navBar(props) {
     )
 }
 
-export default navBar;
+export default NavBar;

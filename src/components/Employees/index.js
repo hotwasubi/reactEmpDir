@@ -1,14 +1,14 @@
 import React from "react";
-import "./empStyle.css";
-import Table from "react-bootstrap/table";
+import "./style.css";
+import { Table } from "react-bootstrap";
 import Moment from "moment";
-
+// import { render } from "@testing-library/react"
 class Employees extends React.Component {
     constructor(props){
         super(props)
         const { allEmp } = this.props
         this.state = {
-            currentState: "arrow_down",
+            currentState: "keyboard_arrow_down",
             employeeList: allEmp
         }
     }
@@ -21,12 +21,15 @@ class Employees extends React.Component {
         let newEmp;
         let newState;
 
-        if (currentState === "arrow_down"){
-            newEmp = allEmp.sort((a,b) => {if(a.name.first.toLowerCase() < b.name.first.toLowerCase())return -1 } )
-            newState = "arrow_up"
-        }else if (currentState === "arrow_up"){
-            newEmp = allEmp.sort((a,b) => {if(a.name.first.toLowerCase() < b.name.toLowerCase()) return -1} )
-            newState = "arrow_down"
+        if (currentState === "keyboard_arrow_down"){
+// eslint-disable-next-line
+            newEmp = allEmp.sort((a,b) => {if(a.name.toLowerCase() < b.name.toLowerCase())return -1 } )
+            newState = "keyboard_arrow_up"
+            
+        }else if (currentState === "keyboard_arrow_up"){
+            // eslint-disable-next-line
+            newEmp = allEmp.sort((a,b) => {if(a.name.toLowerCase() < b.name.toLowerCase()) return -1} )
+            newState = "keyboard_arrow_down"
         }else{
             newEmp = this.props.allEmp
             newState = "sort"
@@ -45,12 +48,14 @@ class Employees extends React.Component {
         let newEmp;
         let newState;
 
-        if (currentState === "arrow_down"){
+        if (currentState === "keyboard_arrow_down"){
+            // eslint-disable-next-line
             newEmp = allEmp.sort((a,b) => {if(a.phone < b.phone ) return -1 } )
-            newState = "arrow_up"
-        }else if (currentState === "arrow_up"){
+            newState = "keyboard_arrow_up"
+        }else if (currentState === "keyboard_arrow_up"){
+            // eslint-disable-next-line
             newEmp = allEmp.sort((a,b) => {if(a.phone < b.phone) return -1} )
-            newState = "arrow_down"
+            newState = "keyboard_arrow_down"
         }else{
             newEmp = this.props.allEmp
             newState = "sort"
@@ -68,12 +73,14 @@ class Employees extends React.Component {
         let newEmp;
         let newState;
 
-        if (currentState === "arrow_down"){
+        if (currentState === "keyboard_arrow_down"){
+            // eslint-disable-next-line
             newEmp = allEmp.sort((a,b) => {if(a.email < b.email ) return -1 } )
-            newState = "arrow_up"
-        }else if (currentState === "arrow_up"){
+            newState = "keyboard_arrow_up"
+        }else if (currentState === "keyboard_arrow_up"){
+            // eslint-disable-next-line
             newEmp = allEmp.sort((a,b) => {if(a.email < b.email) return -1} )
-            newState = "arrow_down"
+            newState = "keyboard_arrow_down"
         }else{
             newEmp = this.props.allEmp
             newState = "sort"
@@ -91,12 +98,14 @@ class Employees extends React.Component {
         let newEmp;
         let newState;
 
-        if (currentState === "arrow_down"){
+        if (currentState === "keyboard_arrow_down"){
+            // eslint-disable-next-line
             newEmp = allEmp.sort((a,b) => {if(Moment(a.dob.date).format("M/D/YYY") < Moment(b.dob.date).format("M/D/YYY")) return -1 } )
-            newState = "arrow_up"
-        }else if (currentState === "arrow_up"){
+            newState = "keyboard_arrow_up"
+        }else if (currentState === "keyboard_arrow_up"){
+            // eslint-disable-next-line
             newEmp = allEmp.sort((a,b) => {if(Moment(a.dob.date).format("M/D/YYY") < Moment(b.dob.date).format("M/D/YYY")) return -1} )
-            newState = "arrow_down"
+            newState = "keyboard_arrow_down"
         }else{
             newEmp = this.props.allEmp
             newState = "sort"
@@ -175,12 +184,12 @@ class Employees extends React.Component {
     
                 <tbody>
                     {allEmp.map(empInfo =>
-                    <tr key={empInfo.id.value}>
-                    <td><img alt={empInfo.name.first} src={empInfo.picture.thumbnail} className="img-fluid profPic"/></td>
-                    <td>{empInfo.name.first} {empInfo.name.last}</td>
+                    <tr key={empInfo.id}>
+                    <td><img alt={empInfo.name} src={empInfo.image} className="img-fluid profPic"/></td>
+                    <td>{empInfo.name} </td>
                     <td>{empInfo.phone}</td>
                     <td>{empInfo.email}</td>
-                    <td>{Moment(empInfo.dob.date).format("M/D/YYYY")}</td>
+                    <td>{Moment(empInfo.dob).format("M/D/YYYY")}</td>
                     </tr>
                     )}
                 </tbody>
@@ -189,3 +198,5 @@ class Employees extends React.Component {
         )
     }
 }
+
+export default Employees;

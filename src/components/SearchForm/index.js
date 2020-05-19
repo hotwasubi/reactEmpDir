@@ -1,11 +1,14 @@
 import React from "react";
-import employees from "../employees";
+import Employees from "../Employees";
 import Moment from "moment";
 import "./style.css"
-import employees from "../../data/employee.json"
-
+// import employee from "../../data/employee.json"
+// import { render } from "@testing-library/react";
+const employee = require ("../../data/employee.json")
+console.log(employee)
 
 class SearchForm extends React.Component {
+
     constructor(props) {
         
         super(props);
@@ -24,7 +27,7 @@ class SearchForm extends React.Component {
     }
 
     render (){
-        let filteredEmployees = this.state.emplopyee.filter(emp => emp.name.first.toLowerCase().indexof(this.state.search.toLocaleLowerCase()) !== -1 |  emp.anme.last.toLowerCase().indexof(this.state.search.toLocaleLowerCase()) !== -1);
+        let filteredEmployees = this.state.employee.filter(emp => emp.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1 |  emp.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1);
         
         Moment.locale("en")
 
@@ -35,7 +38,7 @@ class SearchForm extends React.Component {
                     <form className="text-center input-group">
                         <input type="text" placeholder="Search" name="searchField" className="form-control"value={this.state.search} onChange={this.updateSearch.bind(this)}/>
                         <div className="input-group-append">
-                            <span className="input-group-text"type="button" onClick={this.deleteValue.bind(this)}>x</span>
+                            <span className="input-group-text"type="button" onClick={this.deleteValue}>x</span>
                         </div>
                     </form>
                     </div>
